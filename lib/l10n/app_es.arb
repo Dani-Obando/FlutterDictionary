@@ -1,0 +1,9 @@
+{
+  "@@locale": "es",
+  "appTitle": "Clase_01 con Flutter",
+  "helloWorld": "¡Hola Mundo!",
+  "description": "Flutter es un framework de código abierto para crear aplicaciones móviles y de escritorio.",
+  "aboutButton": "Acerca de...",
+  "aboutTitle": "Acerca de",
+  "aboutDescription": "Este es un ejemplo de una página Acerca de."
+}
