@@ -1,0 +1,9 @@
+{
+  "@@locale": "de",
+  "appTitle": "Klasse_01 mit Flutter",
+  "helloWorld": "Hallo Welt!",
+  "description": "Flutter ist ein Open-Source-Framework zum Erstellen mobiler und Desktop-Anwendungen.",
+  "aboutButton": "Über...",
+  "aboutTitle": "Über",
+  "aboutDescription": "Dies ist ein Beispiel für eine Über-Seite."
+}
