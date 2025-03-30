@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter MultiLanguage',
       debugShowCheckedModeBanner: false,
-      locale: const Locale('es'),
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -30,7 +29,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
