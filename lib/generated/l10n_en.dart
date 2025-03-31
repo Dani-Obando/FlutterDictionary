@@ -9,7 +9,7 @@ class SEn extends S {
   SEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Class_01 with Flutter';
+  String get appTitle => 'Class with Flutter';
 
   @override
   String get helloWorld => 'Hello World!';

@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "Class_01 with Flutter",
+  "appTitle": "Class with Flutter",
   "helloWorld": "Hello World!",
   "description": "Flutter is an open-source framework for building mobile and desktop applications.",
   "aboutButton": "About...",

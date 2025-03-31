@@ -9,7 +9,7 @@ class SDe extends S {
   SDe([String locale = 'de']) : super(locale);
 
   @override
-  String get appTitle => 'Klasse_01 mit Flutter';
+  String get appTitle => 'Klass mit Flutter';
 
   @override
   String get helloWorld => 'Hallo Welt!';

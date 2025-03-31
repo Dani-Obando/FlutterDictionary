@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "appTitle": "Klasse_01 mit Flutter",
+  "appTitle": "Klasse mit Flutter",
   "helloWorld": "Hallo Welt!",
   "description": "Flutter ist ein Open-Source-Framework zum Erstellen mobiler und Desktop-Anwendungen.",
   "aboutButton": "Über...",

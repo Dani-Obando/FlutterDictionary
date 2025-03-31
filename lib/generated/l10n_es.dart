@@ -9,7 +9,7 @@ class SEs extends S {
   SEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitle => 'Clase_01 con Flutter';
+  String get appTitle => 'Clase con Flutter';
 
   @override
   String get helloWorld => '¡Hola Mundo!';
