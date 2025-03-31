@@ -1,3 +1,4 @@
+
 name: appflutter_01
 description: "A new Flutter project."
 publish_to: 'none'
@@ -17,23 +18,23 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
-  build_runner: ^2.3.0
+  flutter_lints: ^5.0.0 #inserta las reglas de flutter de la version 5.0.0 o una superior 
+  build_runner: ^2.3.0 #genera el codigo automaticamente
 
 flutter:
-  uses-material-design: true
-  generate: true
+  uses-material-design: true 
+  generate: true #Habilita la generacion automatica de codigo
   assets:
     - assets/images/pacifico-UTN.png
   
-  # Configuración de localización CORRECTAMENTE INDENTADA
+
 l10n:
-  arb-dir: lib/l10n
-  template-arb-file: app_en.arb
-  output-localization-file: l10n.dart
-  output-dir: lib/generated
-  output-class: S
-  synthetic-package: false
+  arb-dir: lib/l10n #carpeta donde se guardan los archivos de traducción
+  template-arb-file: app_en.arb #Archivo base del idioma inglés
+  output-localization-file: l10n.dart #normbre del archivo generado con las traducciones
+  output-dir: lib/generated #nombre de la carpeta donde se guardan las traducciones
+  output-class: S #clase que se va a utilizar para guardar archivos generados automaticamente
+  synthetic-package: false #hace que los archivos se guarden en una carpeta normal y no una sintetica
   supported-locales:
     - en
     - es

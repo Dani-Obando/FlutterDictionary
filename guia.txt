@@ -1,0 +1,194 @@
+------------------------------------------------------------------------------------------------------------------------------------------------
+1- Dentro de pubspec.yaml borramos todo y copiamos el siguiente archivo
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+name: appflutter_01
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.7.2 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0 #inserta las reglas de flutter de la version 5.0.0 o una superior 
+  build_runner: ^2.3.0 #genera el codigo automaticamente
+
+flutter:
+  uses-material-design: true 
+  generate: true #Habilita la generacion automatica de codigo
+  assets:
+    - assets/images/pacifico-UTN.png
+  
+
+l10n:
+  arb-dir: lib/l10n #carpeta donde se guardan los archivos de traducción
+  output-localization-file: l10n.dart #normbre del archivo generado con las traducciones
+  output-dir: lib/generated #nombre de la carpeta donde se guardan las traducciones
+  output-class: S #clase que se va a utilizar para guardar archivos generados automaticamente
+  synthetic-package: false #hace que los archivos se guarden en una carpeta normal y no una sintetica
+  supported-locales:
+    - en
+    - es
+    - de
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+2 - En la carpeta Build creamos una carpeta llamada <<l10n>> y dentro de esta creamos 3 archivos mas que serán Application Resource Bundle
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+- <<app_de.arb>> copiamos el siguiente codigo
+{
+  "@@locale": "de",
+  "appTitle": "Klasse_01 mit Flutter",
+  "helloWorld": "Hallo Welt!",
+  "description": "Flutter ist ein Open-Source-Framework zum Erstellen mobiler und Desktop-Anwendungen.",
+  "aboutButton": "Über...",
+  "aboutTitle": "Über",
+  "aboutDescription": "Dies ist ein Beispiel für eine Über-Seite."
+}
+
+- <<app_en.arb>> copiamos el siguiente código
+{
+  "@@locale": "en",
+  "appTitle": "Class_01 with Flutter",
+  "helloWorld": "Hello World!",
+  "description": "Flutter is an open-source framework for building mobile and desktop applications.",
+  "aboutButton": "About...",
+  "aboutTitle": "About",
+  "aboutDescription": "This is an example of an About page."
+}
+
+- <<app_es.arb>> copiamos el siguiente código
+{
+  "@@locale": "es",
+  "appTitle": "Clase_01 con Flutter",
+  "helloWorld": "¡Hola Mundo!",
+  "description": "Flutter es un framework de código abierto para crear aplicaciones móviles y de escritorio.",
+  "aboutButton": "Acerca de...",
+  "aboutTitle": "Acerca de",
+  "aboutDescription": "Este es un ejemplo de una página Acerca de."
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+3- En main.dart, eliminamos todo el código y compiamos el siguiente
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart'; //importaciones para manejar traducciones
+import 'generated/l10n.dart'; //importa la carpeta donde se almacenan las traduccioens
+import 'styles/style_01.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter MultiLanguage',
+      debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [ //se definen los flutter localizations para localizar el idioma del dispositivo
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [ //define los idiomas soportados
+        Locale('en'),
+        Locale('es'),
+        Locale('de'),
+      ],
+      home: const HomeScreen(),
+    );
+  }
+}
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(S.of(context)!.appTitle, style: Style01.appBarTitle), // detecta el idioma a través del contexto y lo buscará en su diccionario 
+        centerTitle: true,
+        backgroundColor: const Color.fromRGBO(0, 25, 25, 1),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Image(image: AssetImage('assets/images/pacifico-UTN.png')),
+            Text(
+              S.of(context)!.helloWorld, //texto traducido
+              style: Style01.headline,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Text(
+                S.of(context)!.description, //texto traducido
+                textAlign: TextAlign.justify,
+                style: Style01.bodyText,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const AboutPage(),
+                  ),
+                );
+              },
+              child: Text(S.of(context)!.aboutButton), //texto traducido
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(S.of(context)!.aboutTitle), //texto traducido
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(S.of(context)!.appTitle),         //texto traducido
+            Text(S.of(context)!.aboutDescription), //texto traducido
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+4- En la terminal ejecutamos los siguientes comandos
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+flutter clean
+flutter pub get
+flutter gen-l10n --arb-dir=lib/l10n --output-dir=lib/generated --template-arb-file=app_en.arb --output-localization-file=l10n.dart --output-class=S --no-synthetic-package
+flutter run
+
+
